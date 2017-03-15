@@ -25,6 +25,7 @@ public class Candidat implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String codegenere;
+    private String codeCandidat;
     private String nom;
     private String prenom;
     private String commentaire;
@@ -98,6 +99,14 @@ public class Candidat implements Serializable {
 
     public void setGroupeCandidat(GroupeCandidat groupeCandidat) {
         this.groupeCandidat = groupeCandidat;
+    }
+
+    public String getCodeCandidat() {
+        return codeCandidat;
+    }
+
+    public void setCodeCandidat(String codeCandidat) {
+        this.codeCandidat = codeCandidat;
     }
     
 

@@ -38,7 +38,7 @@ public class Election implements Serializable {
     private Date heurefermetture;
     
     private int simulation;
-    private boolean clotureelection;
+    private boolean clotureElection;
     private int nbinscrit;
     private int nbvotant;
     private int nbblanc;
@@ -113,11 +113,11 @@ public class Election implements Serializable {
     }
 
     public boolean isClotureelection() {
-        return clotureelection;
+        return clotureElection;
     }
 
     public void setClotureelection(boolean clotureelection) {
-        this.clotureelection = clotureelection;
+        this.clotureElection = clotureelection;
     }
 
     public int getNbinscrit() {

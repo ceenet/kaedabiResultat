@@ -47,6 +47,47 @@ public class ParticipationBureau implements Serializable {
         this.id = id;
     }
 
+    public int getNbvotant() {
+        return nbvotant;
+    }
+
+    public void setNbvotant(int nbvotant) {
+        this.nbvotant = nbvotant;
+    }
+
+    public double getTaux() {
+        return taux;
+    }
+
+    public void setTaux(double taux) {
+        this.taux = taux;
+    }
+
+    public Election getElection() {
+        return election;
+    }
+
+    public void setElection(Election election) {
+        this.election = election;
+    }
+
+    public Bureau getBureau() {
+        return bureau;
+    }
+
+    public void setBureau(Bureau bureau) {
+        this.bureau = bureau;
+    }
+
+    public Tranche getTranche() {
+        return tranche;
+    }
+
+    public void setTranche(Tranche tranche) {
+        this.tranche = tranche;
+    }
+
+    
     @Override
     public int hashCode() {
         int hash = 0;
