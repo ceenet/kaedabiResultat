@@ -8,9 +8,11 @@ package com.ceenet.kaedabiResultat.model;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -43,7 +45,8 @@ public class Election implements Serializable {
     private int nbnul;
     private int nbexprime;
     private String commentaire;
-    
+     @ManyToOne(fetch = FetchType.LAZY)
+    private TypeElection typeElection;
 
     public Long getId() {
         return id;
@@ -163,6 +166,14 @@ public class Election implements Serializable {
 
     public void setCommentaire(String commentaire) {
         this.commentaire = commentaire;
+    }
+
+    public TypeElection getTypeElection() {
+        return typeElection;
+    }
+
+    public void setTypeElection(TypeElection typeElection) {
+        this.typeElection = typeElection;
     }
 
     

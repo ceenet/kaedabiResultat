@@ -6,29 +6,26 @@
 package com.ceenet.kaedabiResultat.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 
 /**
  *
  * @author manukey
  */
 @Entity
-public class TypeElection implements Serializable {
+public class Tranche implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String libelle;
-    private String code;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Hierachie hierachie;
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date trancheHeure;
 
     public Long getId() {
         return id;
@@ -38,28 +35,12 @@ public class TypeElection implements Serializable {
         this.id = id;
     }
 
-    public String getLibelle() {
-        return libelle;
+    public Date getTrancheHeure() {
+        return trancheHeure;
     }
 
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
-    }
-
-    public Hierachie getHierachie() {
-        return hierachie;
-    }
-
-    public void setHierachie(Hierachie hierachie) {
-        this.hierachie = hierachie;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
+    public void setTrancheHeure(Date trancheHeure) {
+        this.trancheHeure = trancheHeure;
     }
 
     @Override
@@ -72,10 +53,10 @@ public class TypeElection implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TypeElection)) {
+        if (!(object instanceof Tranche)) {
             return false;
         }
-        TypeElection other = (TypeElection) object;
+        Tranche other = (Tranche) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -84,7 +65,7 @@ public class TypeElection implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ceenet.kaedabiResultat.model.TypeElection[ id=" + id + " ]";
+        return "com.ceenet.kaedabiResultat.model.Tranche[ id=" + id + " ]";
     }
-
+    
 }
