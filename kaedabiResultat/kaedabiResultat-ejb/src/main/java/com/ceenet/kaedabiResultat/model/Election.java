@@ -5,7 +5,6 @@
  */
 package com.ceenet.kaedabiResultat.model;
 
-
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -25,9 +24,25 @@ public class Election implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date dateElection;
+    private String libelleElection;
+    private int tourElection;
+    private int nbcandidat;
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date heureouverture;
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date heurefermetture;
+    
+    private int simulation;
+    private boolean clotureelection;
+    private int nbinscrit;
+    private int nbvotant;
+    private int nbblanc;
+    private int nbnul;
+    private int nbexprime;
+    private String commentaire;
     
 
     public Long getId() {
@@ -38,6 +53,121 @@ public class Election implements Serializable {
         this.id = id;
     }
 
+    public Date getDateElection() {
+        return dateElection;
+    }
+
+    public void setDateElection(Date dateElection) {
+        this.dateElection = dateElection;
+    }
+
+    public String getLibelleElection() {
+        return libelleElection;
+    }
+
+    public void setLibelleElection(String libelleElection) {
+        this.libelleElection = libelleElection;
+    }
+
+    public int getTourElection() {
+        return tourElection;
+    }
+
+    public void setTourElection(int tourElection) {
+        this.tourElection = tourElection;
+    }
+
+    public int getNbcandidat() {
+        return nbcandidat;
+    }
+
+    public void setNbcandidat(int nbcandidat) {
+        this.nbcandidat = nbcandidat;
+    }
+
+    public Date getHeureouverture() {
+        return heureouverture;
+    }
+
+    public void setHeureouverture(Date heureouverture) {
+        this.heureouverture = heureouverture;
+    }
+
+    public Date getHeurefermetture() {
+        return heurefermetture;
+    }
+
+    public void setHeurefermetture(Date heurefermetture) {
+        this.heurefermetture = heurefermetture;
+    }
+
+    public int getSimulation() {
+        return simulation;
+    }
+
+    public void setSimulation(int simulation) {
+        this.simulation = simulation;
+    }
+
+    public boolean isClotureelection() {
+        return clotureelection;
+    }
+
+    public void setClotureelection(boolean clotureelection) {
+        this.clotureelection = clotureelection;
+    }
+
+    public int getNbinscrit() {
+        return nbinscrit;
+    }
+
+    public void setNbinscrit(int nbinscrit) {
+        this.nbinscrit = nbinscrit;
+    }
+
+    public int getNbvotant() {
+        return nbvotant;
+    }
+
+    public void setNbvotant(int nbvotant) {
+        this.nbvotant = nbvotant;
+    }
+
+    public int getNbblanc() {
+        return nbblanc;
+    }
+
+    public void setNbblanc(int nbblanc) {
+        this.nbblanc = nbblanc;
+    }
+
+    public int getNbnul() {
+        return nbnul;
+    }
+
+    public void setNbnul(int nbnul) {
+        this.nbnul = nbnul;
+    }
+
+    public int getNbexprime() {
+        return nbexprime;
+    }
+
+    public void setNbexprime(int nbexprime) {
+        this.nbexprime = nbexprime;
+    }
+
+    public String getCommentaire() {
+        return commentaire;
+    }
+
+    public void setCommentaire(String commentaire) {
+        this.commentaire = commentaire;
+    }
+
+    
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -62,5 +192,5 @@ public class Election implements Serializable {
     public String toString() {
         return "com.ceenet.kaedabiResultat.model.Election[ id=" + id + " ]";
     }
-    
+
 }
