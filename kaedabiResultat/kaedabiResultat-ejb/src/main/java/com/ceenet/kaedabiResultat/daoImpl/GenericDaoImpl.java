@@ -19,7 +19,7 @@ import javax.persistence.PersistenceContext;
  */
 public class GenericDaoImpl<T> implements GenericDao<T> {
 
-    @PersistenceContext(unitName = "fidelisationAppPU")
+    @PersistenceContext(unitName = "kaedabiResultatPU")
     protected EntityManager em;
 
     private Class<T> entityClass;
