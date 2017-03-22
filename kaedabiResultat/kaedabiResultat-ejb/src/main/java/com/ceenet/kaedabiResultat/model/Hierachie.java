@@ -25,6 +25,7 @@ public class Hierachie implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int niveau;
+    private String description;
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     private Hierachie hierachieparent;
 
@@ -52,6 +53,15 @@ public class Hierachie implements Serializable {
         this.hierachieparent = hierachieparent;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    
     @Override
     public int hashCode() {
         int hash = 0;

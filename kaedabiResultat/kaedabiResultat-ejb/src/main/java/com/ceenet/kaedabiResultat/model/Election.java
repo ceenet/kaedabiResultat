@@ -29,6 +29,7 @@ public class Election implements Serializable {
 
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date dateElection;
+    private String codeElection;
     private String libelleElection;
     private int tourElection;
     private int nbcandidat;
@@ -174,6 +175,14 @@ public class Election implements Serializable {
 
     public void setTypeElection(TypeElection typeElection) {
         this.typeElection = typeElection;
+    }
+
+    public String getCodeElection() {
+        return codeElection;
+    }
+
+    public void setCodeElection(String codeElection) {
+        this.codeElection = codeElection;
     }
 
     

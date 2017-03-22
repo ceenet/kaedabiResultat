@@ -24,7 +24,8 @@ public class Tranche implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private String  code;
+    @Temporal(javax.persistence.TemporalType.TIME)
     private Date trancheHeure;
 
     public Long getId() {
@@ -41,6 +42,14 @@ public class Tranche implements Serializable {
 
     public void setTrancheHeure(Date trancheHeure) {
         this.trancheHeure = trancheHeure;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     @Override
