@@ -5,16 +5,15 @@
  */
 package com.ceenet.kaedabiResultat.dao;
 
-import com.ceenet.kaedabiResultat.model.Bureau;
-import com.ceenet.kaedabiResultat.model.Hierachie;
-import java.util.List;
+
+import com.ceenet.kaedabiResultat.model.Decoupage;
+
 
 
 /**
  *
  * @author manukey
  */
-public interface BureauDao extends GenericDao<Bureau>{
-    public List<Bureau> findbyHierachie(Hierachie hierachie);
+public interface DecoupageDao extends GenericDao<Decoupage>{
     
 }

@@ -1,0 +1,183 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+
+
+
+    <ui:define name="head">
+        <script type="text/javascript">
+            function skinChart() {
+                this.cfg.shadow = false;
+                this.cfg.seriesColors = ['#dae8ef', '#27aae1'];
+                this.cfg.grid = {
+                    background: '#f3f5f7',
+                    borderColor: '#e5ebf0',
+                    gridLineColor: '#e5ebf0',
+                    shadow: false
+                };
+                this.cfg.axesDefaults = {
+                    rendererOptions: {
+                        textColor: '#9fadb5'
+                    }
+                };
+                this.cfg.seriesDefaults = {
+                    shadow: false,
+                    markerOptions: {
+                        shadow: false
+                    }
+                }
+            }
+
+            function skinPie() {
+                this.cfg.seriesColors = ['#dae8ef', '#27aae1', '#33ccff', '#9fadb5'];
+                this.cfg.grid = {
+                    background: '#ffffff',
+                    borderColor: '#eaeaea',
+                    gridLineColor: '#e5ebf0',
+                    shadow: false,
+                    borderWidth: 0
+                };
+                this.cfg.seriesDefaults.shadow = false;
+            }
+
+
+        </script>
+        <style type="text/css">
+            .jqplot-target, .jqplot-axis {
+                color: #9fadb5;
+            }
+        </style>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="Container100">
+            <div class="ContainerIndent">
+                <div class="EmptyBox20"></div>
+
+                <f:view>
+                    <div>
+                        <div style="float:left">
+                            <h:panelGrid columns="1" cellpadding="5">
+
+
+                                <p:commandButton value="Ajouter" type="button" onclick="PF('dlg2').show();"/>
+
+
+                            </h:panelGrid>
+                        </div>
+
+                    </div>
+                    <h:form id="form">
+                        <p:dataTable var="listBureau" value="#{bureauBean.listBureau}" id="grid" paginator="true"
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="5,10,15">
+
+                            <p:column headerText="Niveau">
+                                <h:outputText value="#{listBureau.hierachie.description}" />
+                            </p:column>
+                            <p:column headerText="code">
+                                <h:outputText value="#{listBureau.codeBureau}" />
+                            </p:column>
+
+                            <p:column headerText="code généré">
+                                <h:outputText value="#{listBureau.codegenere}" />
+                            </p:column>
+
+                            <p:column headerText="Zone">
+                                <h:outputText value="#{listBureau.libelle}" />
+                            </p:column>
+
+
+                            <p:column headerText="zone parente">
+                                <h:outputText value="#{listBureau.bureauparent.libelle}" />
+                            </p:column>
+
+
+                            <!--                            <p:column style="width:32px">
+                            
+                                                            <p:commandButton  type="button" onclick="PF('dlg3').show();" icon="ui-icon fa fa-edit" style="color:white" title="update"/>
+                            
+                                                        </p:column>-->
+
+
+                        </p:dataTable>
+                    </h:form>
+
+                    <p:dialog header="Ajout " widgetVar="dlg2" modal="true" height="auto" >
+
+
+                        <f:view>
+                            <h:form>
+
+                                <p:messages autoUpdate="true"/>
+
+                                <h:panelGrid id="grid" columns="1" cellpadding="5">
+                                    <p:outputPanel deferred="true" >
+                                        <p:fieldset legend="Zone" style="margin-bottom:20px">
+                                            <h:panelGrid  columns="2" cellpadding="5">
+
+                                                <h:outputLabel value="Code zone:" for="Code_bureau" />
+                                                <p:inputText id="Code_bureau" value="#{bureauBean.codeBureau}" title="code" required="true" label="code"/>
+
+                                                <h:outputLabel value="Code généré:" for="codegenere_bureau" />
+                                                <p:inputText id="codegenere_bureau" value="#{bureauBean.codegenere}" title="code genere" label="code genere"/>
+                                                <h:outputLabel value="zone :" for="libelle_bureau" />
+                                                <p:inputText id="libelle_bureau" value="#{bureauBean.libelle}" title="zone" required="true" label="zone"/>
+
+                                                <h:outputLabel value="Hierachie :"/>
+                                                <p:selectOneMenu value="#{bureauBean.hierachie}" required="true" label="Niveau hierachie">  
+                                                    <f:selectItem itemLabel="Selectioner une hierachie" itemValue="" />  
+                                                    <f:selectItems value="#{hierachieBean.listHierachie}" var="tag1"
+                                                                   itemLabel="#{tag1.description}" itemValue="#{tag1}"/>  
+                                                </p:selectOneMenu>
+
+                                                <h:outputLabel value="Hierachie :"/>
+                                                <p:selectOneMenu value="#{bureauBean.hierachie}" required="true" label="Niveau hierachie">  
+                                                    <f:selectItem itemLabel="Selectioner une hierachie" itemValue="" />  
+                                                    <f:selectItems value="#{hierachieBean.listHierachie}" var="tag1"
+                                                                   itemLabel="#{tag1.description}" itemValue="#{tag1}"/>  
+                                                </p:selectOneMenu>
+                                                <h:outputLabel value="zone parente:"/>
+                                                <p:selectOneMenu value="#{bureauBean.bureauparent}" required="true" label="groupe politique">  
+                                                    <f:selectItem itemLabel="Selectioner un type" itemValue="" />  
+                                                    <f:selectItems value="#{bureauBean.listparent}" var="tag2"
+                                                                   itemLabel="#{tag2.libelle}" itemValue="#{tag2}"/>  
+                                                </p:selectOneMenu>
+
+                                            </h:panelGrid>
+                                        </p:fieldset>
+
+
+
+
+                                    </p:outputPanel>
+
+
+                                </h:panelGrid>
+
+                                <p:commandButton value="Valider" update="grid" icon="ui-icon-check" validateClient="true" style="margin-right:10px" action="#{bureauBean.creerBureau}"/>
+
+                            </h:form>
+
+                        </f:view>
+
+                    </p:dialog>   
+
+                </f:view>
+
+
+                <div class="EmptyBox10"></div>
+            </div>
+        </div>
+
+
+
+    </ui:define>
+
+
+
+</ui:composition>

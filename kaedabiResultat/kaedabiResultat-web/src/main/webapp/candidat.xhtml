@@ -1,0 +1,276 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+
+
+
+    <ui:define name="head">
+        <script type="text/javascript">
+            function skinChart() {
+                this.cfg.shadow = false;
+                this.cfg.seriesColors = ['#dae8ef', '#27aae1'];
+                this.cfg.grid = {
+                    background: '#f3f5f7',
+                    borderColor: '#e5ebf0',
+                    gridLineColor: '#e5ebf0',
+                    shadow: false
+                };
+                this.cfg.axesDefaults = {
+                    rendererOptions: {
+                        textColor: '#9fadb5'
+                    }
+                };
+                this.cfg.seriesDefaults = {
+                    shadow: false,
+                    markerOptions: {
+                        shadow: false
+                    }
+                }
+            }
+
+            function skinPie() {
+                this.cfg.seriesColors = ['#dae8ef', '#27aae1', '#33ccff', '#9fadb5'];
+                this.cfg.grid = {
+                    background: '#ffffff',
+                    borderColor: '#eaeaea',
+                    gridLineColor: '#e5ebf0',
+                    shadow: false,
+                    borderWidth: 0
+                };
+                this.cfg.seriesDefaults.shadow = false;
+            }
+
+            function readURL(input) {
+
+                if (input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#blah').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("#imgInp").change(function () {
+                readURL(this);
+            });
+        </script>
+        <style type="text/css">
+            .jqplot-target, .jqplot-axis {
+                color: #9fadb5;
+            }
+        </style>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="Container100">
+            <div class="ContainerIndent">
+                <div class="EmptyBox20"></div>
+
+                <f:view>
+                    <div>
+                        <div style="float:left">
+                            <h:panelGrid columns="1" cellpadding="5">
+
+
+                                <p:commandButton value="Ajouter" type="button" onclick="PF('dlg2').show();"/>
+
+
+                            </h:panelGrid>
+                        </div>
+
+                    </div>
+                    <h:form id="form">
+                        <p:dataTable var="listcandidat" value="#{candidatBean.listcandidat}" id="grid" paginator="true"
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="5,10,15">
+
+
+                            <p:column headerText="code">
+                                <h:outputText value="#{listcandidat.codeCandidat}" />
+                            </p:column>
+
+                            <p:column headerText="code généré">
+                                <h:outputText value="#{listcandidat.codegenere}" />
+                            </p:column>
+
+                            <p:column headerText="nom">
+                                <h:outputText value="#{listcandidat.nom}" />
+                            </p:column>
+
+                            <p:column headerText="prenom">
+                                <h:outputText value="#{listcandidat.prenom}" />
+                            </p:column>
+                            <p:column headerText="parti">
+                                <h:outputText value="#{listcandidat.parti.libelle}" />
+                            </p:column>
+                            <p:column headerText="groupe">
+                                <h:outputText value="#{listcandidat.groupeCandidat.libelle}" />
+                            </p:column>
+
+                            <p:column style="width:32px">
+
+                                <p:commandButton  type="button" onclick="PF('dlg3').show();" icon="ui-icon fa fa-edit" style="color:white" title="update"/>
+
+                            </p:column>
+
+                            <p:column style="width:32px">
+                                <p:commandButton update=":form:grid " action="#{candidatBean.supprimerCandidat}" oncomplete="PF('carDialog').show()" icon="ui-icon fa fa-trash-o" style="color:white" title="Supprimer">
+                                    <f:setPropertyActionListener value="#{listcandidat.id}"  target="#{candidatBean.selectCandidat}" />
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+
+                    <p:dialog header="Ajout " widgetVar="dlg2" modal="true" height="auto" >
+
+
+                        <f:view>
+                            <h:form>
+
+                                <p:messages autoUpdate="true"/>
+
+                                <h:panelGrid id="grid" columns="2" cellpadding="5">
+                                    <p:outputPanel deferred="true" >
+                                        <p:fieldset legend="Candidats" style="margin-bottom:20px">
+                                            <h:panelGrid  columns="2" cellpadding="5">
+                                                <h:outputLabel value="Code:" for="code_candidat" />
+                                                <p:inputText id="code_candidat" value="#{candidatBean.codeCandidat}" title="code" required="true" label="code"/>
+
+                                                <h:outputLabel value="Code généré:" for="code_genere" />
+                                                <p:inputText id="code_genere" value="#{candidatBean.codegenere}" title="code_genere" required="true" label="code genere"/>
+
+                                                <h:outputLabel value="Nom:" for="nom_candidat" />
+                                                <p:inputText id="nom_candidat" value="#{candidatBean.nom}" title="Nom" required="true" label="nom"/>
+
+                                                <h:outputLabel value="Prenom:" for="Prenom_candidat" />
+                                                <p:inputText id="Prenom_candidat" value="#{candidatBean.prenom}" title="Prenom" required="true" label="Prenom"/>
+
+                                                <h:outputLabel value="photo:" for="photo_candidat" />
+                                                <p:inputText id="photo_candidat" value="#{candidatBean.photo}" title="Photo" label="Photo"/>
+                                            </h:panelGrid>
+                                        </p:fieldset>
+                                        <p:fieldset legend="Appartenances politiques" style="margin-bottom:20px">
+                                            <h:panelGrid  columns="2" cellpadding="5">
+
+                                                <h:outputLabel value="Parti:"  />
+                                                <p:selectOneMenu value="#{candidatBean.parti_id}" required="true" label="parti">  
+                                                    <f:selectItem itemLabel="Selectioner un type" itemValue="" />  
+                                                    <f:selectItems value="#{partiBean.listParti}" var="tag"
+                                                                   itemLabel="#{tag.libelle}" itemValue="#{tag.id}"/>  
+                                                </p:selectOneMenu>
+
+                                                <h:outputLabel value="Groupe:"/>
+                                                <p:selectOneMenu value="#{candidatBean.groupecandidat_id}" required="true" label="groupe politique">  
+                                                    <f:selectItem itemLabel="Selectioner un type" itemValue="" />  
+                                                    <f:selectItems value="#{groupeCandidatBean.listGroupeCandidat}" var="tag1"
+                                                                   itemLabel="#{tag1.libelle}" itemValue="#{tag1.id}"/>  
+                                                </p:selectOneMenu>
+                                            </h:panelGrid>
+                                        </p:fieldset>
+
+
+
+                                    </p:outputPanel>
+
+                                    <p:outputPanel deferred="true">
+                                        <p:fieldset legend="Divers" style="margin-bottom:20px">
+                                            
+                                            <h:panelGrid  columns="1">
+                                                <h:outputLabel value="Photo candidat:"  />
+                                                <p:graphicImage value="#" height="150" width="150" id="blah"/>
+                                                <p:fileUpload id="imgInp" mode="simple"
+                                                              allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                                                              value="#{candidatBean.uploadedPicture}"/>
+                                                <h:outputLabel value="Commentaire:" for="commentaire_candidat" />
+                                                <p:inputText id="commentaire_candidat" value="#{candidatBean.commentaire}" title="commentaire"  label="commentaire"/>
+                                            </h:panelGrid>
+                                        </p:fieldset>
+
+                                    </p:outputPanel>
+
+                                </h:panelGrid>
+
+                                <p:commandButton value="Valider" update="grid" icon="ui-icon-check" validateClient="true" style="margin-right:10px" action="#{candidatBean.creerCandidat}"/>
+
+                            </h:form>
+
+                        </f:view>
+
+                    </p:dialog>   
+                    <!--Modification-->
+                    <p:dialog header="Modification " widgetVar="dlg3" modal="true" height="auto" >
+
+
+                        <f:view>
+                            <h:form>
+                                <h:outputText value="&lt;!--[if lt IE 9]&gt;" escape="false" />
+                                <h:outputScript library="js" name="html5shiv.js" />
+                                <h:outputText value="&lt;![endif]--&gt;" escape="false" />
+                                <p:messages autoUpdate="true"/>
+
+                                <h:panelGrid id="grid" columns="2" cellpadding="5">
+
+                                    <h:outputLabel value="Code:" for="code_candidat" />
+                                    <p:inputText id="code_candidat" value="#{candidatBean.codeCandidat}" title="code" required="true" label="code"/>
+
+                                    <h:outputLabel value="Code généré:" for="code_genere" />
+                                    <p:inputText id="code_genere" value="#{candidatBean.codegenere}" title="code_genere" required="true" label="code genere"/>
+
+                                    <h:outputLabel value="Nom:" for="nom_candidat" />
+                                    <p:inputText id="nom_candidat" value="#{candidatBean.nom}" title="Nom" required="true" label="nom"/>
+
+                                    <h:outputLabel value="Prenom:" for="Prenom_candidat" />
+                                    <p:inputText id="Prenom_candidat" value="#{candidatBean.prenom}" title="Prenom" required="true" label="Prenom"/>
+
+                                    <h:outputLabel value="photo:" for="photo_candidat" />
+                                    <p:inputText id="photo_candidat" value="#{candidatBean.photo}" title="Photo" label="Photo"/>
+
+                                    <h:outputLabel value="Parti:"  />
+                                    <p:selectOneMenu value="#{candidatBean.parti_id}" required="true" label="parti">  
+                                        <f:selectItem itemLabel="Selectioner un type" itemValue="" />  
+                                        <f:selectItems value="#{partiBean.listParti}" var="tag"
+                                                       itemLabel="#{tag.libelle}" itemValue="#{tag.id}"/>  
+                                    </p:selectOneMenu>
+
+                                    <h:outputLabel value="Groupe:"/>
+                                    <p:selectOneMenu value="#{candidatBean.groupecandidat_id}" required="true" label="groupe politique">  
+                                        <f:selectItem itemLabel="Selectioner un type" itemValue="" />  
+                                        <f:selectItems value="#{groupeCandidatBean.listGroupeCandidat}" var="tag1"
+                                                       itemLabel="#{tag1.libelle}" itemValue="#{tag1.id}"/>  
+                                    </p:selectOneMenu>
+
+                                    <h:outputLabel value="Commentaire:" for="commentaire_candidat" />
+                                    <p:inputText id="commentaire_candidat" value="#{candidatBean.commentaire}" title="commentaire"  label="commentaire"/>
+
+
+
+                                </h:panelGrid>
+
+                                <p:commandButton value="Valider" update="grid" icon="ui-icon-check" validateClient="true" style="margin-right:10px" action="#{candidatBean.modifierCandidat}"/>
+
+                            </h:form>
+
+                        </f:view>
+
+                    </p:dialog> 
+                </f:view>
+
+
+                <div class="EmptyBox10"></div>
+            </div>
+        </div>
+
+
+
+    </ui:define>
+
+
+
+</ui:composition>

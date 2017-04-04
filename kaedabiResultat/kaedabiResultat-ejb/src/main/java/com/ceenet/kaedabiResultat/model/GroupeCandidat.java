@@ -23,6 +23,7 @@ public class GroupeCandidat implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String libelle;
+    private String code;
 
     public Long getId() {
         return id;
@@ -30,6 +31,14 @@ public class GroupeCandidat implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getLibelle() {

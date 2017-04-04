@@ -3,7 +3,7 @@
   <persistence-unit name="kaedabiResultatPU" transaction-type="JTA">
     <jta-data-source>java:/KaedabiResultatSqlDS</jta-data-source>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
-    <properties>
+    <properties> 
       <property name="hibernate.hbm2ddl.auto" value="update"/>
       <property name="hibernate.show_sql" value="false"/>
     </properties>

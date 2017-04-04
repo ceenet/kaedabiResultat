@@ -29,20 +29,20 @@ public class TypeElectionBean implements Serializable {
     @EJB
     private HierachieService hierachieService;
 
-    private List<TypeElection> listTypeElection;
+  //  private List<TypeElection> listTypeElection;
 
     private String description;
     private String code;
     private long hierachieParent;
-
-    public List<TypeElection> getListTypeElection() {
-        listTypeElection = typeElectionService.listTypeElection();
-        return listTypeElection;
-    }
-
-    public void setListTypeElection(List<TypeElection> listTypeElection) {
-        this.listTypeElection = listTypeElection;
-    }
+//
+//    public List<TypeElection> getListTypeElection() {
+//        listTypeElection = typeElectionService.listTypeElection();
+//        return listTypeElection;
+//    }
+//
+//    public void setListTypeElection(List<TypeElection> listTypeElection) {
+//        this.listTypeElection = listTypeElection;
+//    }
 
     public String getDescription() {
         return description;
@@ -74,7 +74,7 @@ public class TypeElectionBean implements Serializable {
     public String creerTypeElection() {
         //  System.out.print("xxxx");
         Hierachie hierachiePar = hierachieService.findHierachieById(hierachieParent);
-        typeElectionService.createTypeElection(code,description, hierachiePar);
+        typeElectionService.createTypeElection(code,description);
 
         return "success";
     }

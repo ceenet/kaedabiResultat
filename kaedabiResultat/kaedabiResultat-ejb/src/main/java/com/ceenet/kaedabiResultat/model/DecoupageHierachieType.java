@@ -18,21 +18,21 @@ import javax.persistence.ManyToOne;
  * @author manukey
  */
 @Entity
-public class ElectionCandidat implements Serializable {
+public class DecoupageHierachieType implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
     @ManyToOne(fetch = FetchType.LAZY)
-    private Candidat candidat;
+    private Decoupage decoupage;
     @ManyToOne(fetch = FetchType.LAZY)
-    private Bureau bureau;
-    private int resultat;
-    private double taux;
+    private Hierachie hierachie;
 
-    //getter et setter
+    @ManyToOne(fetch = FetchType.LAZY)
+    private TypeElection typeElection;
+
+
     public Long getId() {
         return id;
     }
@@ -41,39 +41,31 @@ public class ElectionCandidat implements Serializable {
         this.id = id;
     }
 
-   
-
-    public Candidat getCandidat() {
-        return candidat;
+    public Decoupage getDecoupage() {
+        return decoupage;
     }
 
-    public void setCandidat(Candidat candidat) {
-        this.candidat = candidat;
+    public void setDecoupage(Decoupage decoupage) {
+        this.decoupage = decoupage;
     }
 
-    public int getResultat() {
-        return resultat;
+    public Hierachie getHierachie() {
+        return hierachie;
     }
 
-    public void setResultat(int resultat) {
-        this.resultat = resultat;
+    public void setHierachie(Hierachie hierachie) {
+        this.hierachie = hierachie;
     }
 
-    public double getTaux() {
-        return taux;
+    public TypeElection getTypeElection() {
+        return typeElection;
     }
 
-    public void setTaux(double taux) {
-        this.taux = taux;
+    public void setTypeElection(TypeElection typeElection) {
+        this.typeElection = typeElection;
     }
 
-    public Bureau getBureau() {
-        return bureau;
-    }
-
-    public void setBureau(Bureau bureau) {
-        this.bureau = bureau;
-    }
+ 
 
     
     @Override
@@ -86,10 +78,10 @@ public class ElectionCandidat implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ElectionCandidat)) {
+        if (!(object instanceof DecoupageHierachieType)) {
             return false;
         }
-        ElectionCandidat other = (ElectionCandidat) object;
+        DecoupageHierachieType other = (DecoupageHierachieType) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -98,7 +90,7 @@ public class ElectionCandidat implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ceenet.kaedabiResultat.model.ElectionCandidat[ id=" + id + " ]";
+        return "com.ceenet.kaedabiResultat.model.Hierachie[ id=" + id + " ]";
     }
 
 }

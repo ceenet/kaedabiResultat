@@ -27,8 +27,7 @@ public class TypeElection implements Serializable {
     private String libelle;
     private String code;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Hierachie hierachie;
+  
 
     public Long getId() {
         return id;
@@ -46,13 +45,7 @@ public class TypeElection implements Serializable {
         this.libelle = libelle;
     }
 
-    public Hierachie getHierachie() {
-        return hierachie;
-    }
-
-    public void setHierachie(Hierachie hierachie) {
-        this.hierachie = hierachie;
-    }
+    
 
     public String getCode() {
         return code;

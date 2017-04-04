@@ -5,7 +5,9 @@
  */
 package com.ceenet.kaedabiResultat.dao;
 
-import com.ceenet.kaedabiResultat.model.ElectionBureau;
+
+
+import com.ceenet.kaedabiResultat.model.DecoupageHierachieType;
 
 
 
@@ -13,6 +15,6 @@ import com.ceenet.kaedabiResultat.model.ElectionBureau;
  *
  * @author manukey
  */
-public interface ElectionBureauDao extends GenericDao<ElectionBureau>{
+public interface DecoupageHierachieTypeDao extends GenericDao<DecoupageHierachieType>{
     
 }

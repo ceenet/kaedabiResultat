@@ -18,24 +18,15 @@ import javax.persistence.ManyToOne;
  * @author manukey
  */
 @Entity
-public class ElectionResultat implements Serializable {
+public class Decoupage implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String code;
+    private String libelle;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Election election;
-    
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Candidat candidat;
-    
-     @ManyToOne(fetch = FetchType.LAZY)
-    private Bureau bureau;
-    
-    private int resultat;
-    private double taux;
 
     public Long getId() {
         return id;
@@ -45,47 +36,25 @@ public class ElectionResultat implements Serializable {
         this.id = id;
     }
 
-    public Election getElection() {
-        return election;
+    public String getCode() {
+        return code;
     }
 
-    public void setElection(Election election) {
-        this.election = election;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public Candidat getCandidat() {
-        return candidat;
+    public String getLibelle() {
+        return libelle;
     }
 
-    public void setCandidat(Candidat candidat) {
-        this.candidat = candidat;
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
     }
 
-    public Bureau getBureau() {
-        return bureau;
-    }
-
-    public void setBureau(Bureau bureau) {
-        this.bureau = bureau;
-    }
-
-    public int getResultat() {
-        return resultat;
-    }
-
-    public void setResultat(int resultat) {
-        this.resultat = resultat;
-    }
-
-    public double getTaux() {
-        return taux;
-    }
-
-    public void setTaux(double taux) {
-        this.taux = taux;
-    }
     
 
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -96,10 +65,10 @@ public class ElectionResultat implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ElectionResultat)) {
+        if (!(object instanceof Decoupage)) {
             return false;
         }
-        ElectionResultat other = (ElectionResultat) object;
+        Decoupage other = (Decoupage) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -108,7 +77,7 @@ public class ElectionResultat implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ceenet.kaedabiResultat.model.ElectionResultat[ id=" + id + " ]";
+        return "com.ceenet.kaedabiResultat.model.Hierachie[ id=" + id + " ]";
     }
-    
+
 }

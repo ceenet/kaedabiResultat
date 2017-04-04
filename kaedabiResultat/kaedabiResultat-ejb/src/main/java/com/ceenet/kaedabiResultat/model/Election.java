@@ -185,6 +185,14 @@ public class Election implements Serializable {
         this.codeElection = codeElection;
     }
 
+    public boolean isClotureElection() {
+        return clotureElection;
+    }
+
+    public void setClotureElection(boolean clotureElection) {
+        this.clotureElection = clotureElection;
+    }
+
     
     
     

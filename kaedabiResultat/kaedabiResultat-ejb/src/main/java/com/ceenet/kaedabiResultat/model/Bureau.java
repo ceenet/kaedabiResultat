@@ -29,10 +29,19 @@ public class Bureau implements Serializable {
     private String libelle;
     private int positionx;
     private int positiony;
+    private int nbinscrit;
+    private int nbvotant;
+    private int nbblanc;
+    private int nbnul;
+    private int nbexprime;
+    private double txexprime;
+    private String message;
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     private Bureau bureauparent;
     @ManyToOne(fetch = FetchType.LAZY)
     private Hierachie hierachie;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Election election;
     
 
     public Long getId() {
@@ -98,6 +107,73 @@ public class Bureau implements Serializable {
     public void setHierachie(Hierachie hierachie) {
         this.hierachie = hierachie;
     }
+
+    public int getNbinscrit() {
+        return nbinscrit;
+    }
+
+    public void setNbinscrit(int nbinscrit) {
+        this.nbinscrit = nbinscrit;
+    }
+
+    public int getNbvotant() {
+        return nbvotant;
+    }
+
+    public void setNbvotant(int nbvotant) {
+        this.nbvotant = nbvotant;
+    }
+
+    public int getNbblanc() {
+        return nbblanc;
+    }
+
+    public void setNbblanc(int nbblanc) {
+        this.nbblanc = nbblanc;
+    }
+
+    public int getNbnul() {
+        return nbnul;
+    }
+
+    public void setNbnul(int nbnul) {
+        this.nbnul = nbnul;
+    }
+
+    public int getNbexprime() {
+        return nbexprime;
+    }
+
+    public void setNbexprime(int nbexprime) {
+        this.nbexprime = nbexprime;
+    }
+
+    public double getTxexprime() {
+        return txexprime;
+    }
+
+    public void setTxexprime(double txexprime) {
+        this.txexprime = txexprime;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Election getElection() {
+        return election;
+    }
+
+    public void setElection(Election election) {
+        this.election = election;
+    }
+    
+    
+    
 
     
     @Override

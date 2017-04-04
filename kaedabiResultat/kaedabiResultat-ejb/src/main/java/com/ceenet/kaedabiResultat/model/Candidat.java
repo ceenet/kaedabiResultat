@@ -37,6 +37,12 @@ public class Candidat implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private GroupeCandidat groupeCandidat;
 
+    
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Election election;
+    
+//getter et setter
     public Long getId() {
         return id;
     }
@@ -107,6 +113,13 @@ public class Candidat implements Serializable {
 
     public void setCodeCandidat(String codeCandidat) {
         this.codeCandidat = codeCandidat;
+    }
+    public Election getElection() {
+        return election;
+    }
+
+    public void setElection(Election election) {
+        this.election = election;
     }
     
 

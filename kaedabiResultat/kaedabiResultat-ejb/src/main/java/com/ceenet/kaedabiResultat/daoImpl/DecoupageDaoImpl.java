@@ -6,8 +6,10 @@
 package com.ceenet.kaedabiResultat.daoImpl;
 
 
-import com.ceenet.kaedabiResultat.dao.ElectionBureauDao;
-import com.ceenet.kaedabiResultat.model.ElectionBureau;
+
+import com.ceenet.kaedabiResultat.dao.DecoupageDao;
+
+import com.ceenet.kaedabiResultat.model.Decoupage;
 import javax.ejb.Stateless;
 
 /**
@@ -15,11 +17,11 @@ import javax.ejb.Stateless;
  * @author manukey
  */
 @Stateless
-public class ElectionBureauDaoImpl extends GenericDaoImpl<ElectionBureau> implements ElectionBureauDao{
+public class DecoupageDaoImpl extends GenericDaoImpl<Decoupage> implements DecoupageDao{
     
-    public ElectionBureauDaoImpl() {
+    public DecoupageDaoImpl() {
     }
-    public ElectionBureauDaoImpl(Class<ElectionBureau> entityClass) {
+    public DecoupageDaoImpl(Class<Decoupage> entityClass) {
         super(entityClass);
     }
 }

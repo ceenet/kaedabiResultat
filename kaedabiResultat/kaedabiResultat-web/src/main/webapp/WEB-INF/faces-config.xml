@@ -49,7 +49,46 @@
             <to-view-id>/tranches_horaires.xhtml</to-view-id>
             <redirect/>
         </navigation-case>   
-
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/parti.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{partiBean.creerParti}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/parti.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>   
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/candidat.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{candidatBean.creerCandidat}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/candidat.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>   
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/groupeCandidat.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{groupeCandidatBean.creerGroupeCandidat}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/groupeCandidat.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>   
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/bureau.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{bureauBean.creerBureau}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/bureau.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>   
     </navigation-rule>
     
 </faces-config>

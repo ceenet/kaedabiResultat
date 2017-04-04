@@ -6,7 +6,7 @@
 package com.ceenet.kaedabiResultat.service;
 
 import com.ceenet.kaedabiResultat.dao.TypeElectionDao;
-import com.ceenet.kaedabiResultat.model.Hierachie;
+
 import com.ceenet.kaedabiResultat.model.TypeElection;
 import java.util.List;
 import javax.ejb.EJB;
@@ -25,10 +25,10 @@ public class TypeElectionService {
     private TypeElectionDao typeElectionDao;
      
      
-     public TypeElection createTypeElection(String code,String description,Hierachie hierachieParent){
+     public TypeElection createTypeElection(String code,String description){
         TypeElection t= new TypeElection();
       t.setCode(code);
-       t.setHierachie(hierachieParent);
+      // t.setHierachie(hierachieParent);
        t.setLibelle(description);
         
          return t = typeElectionDao.create(t);
